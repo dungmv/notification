@@ -1,6 +1,7 @@
 import admin from "firebase-admin";
 import { getMessaging } from "firebase-admin/messaging";
 import serviceAccount from "./service-account.json" with { type: "json" };
+import { DEVICE_TOKEN } from "./config.js";
 
 // Khởi tạo Firebase Admin SDK
 const app = admin.initializeApp({
@@ -16,21 +17,22 @@ async function sendNotificationToToken(registrationToken) {
       notification: {
         title: "Nguyễn Hải An",
         body: "An vừa gửi cho bạn đơn nghỉ phép 2 ngày cần phê duyệt",
+        imageUrl: "https://sineksekiz.com/wp-content/uploads/2025/02/anh-gai-xinh-11aY6mVg.jpg",
       },
       android: {
         notification: {
-          imageUrl: "https://www.pngitem.com/pimgs/m/523-5236058_nh-icon-hot-hnh-hd-png-download.png",
-          notificationCount: 1,
+          // imageUrl: "https://www.pngitem.com/pimgs/m/523-5236058_nh-icon-hot-hnh-hd-png-download.png",
+          notificationCount: 2,
         },
       },
       apns: {
         payload: {
           aps: {
-            badge: 1,
+            badge: 2,
           },
         },
         fcmOptions: {
-          imageUrl: "https://www.pngitem.com/pimgs/m/523-5236058_nh-icon-hot-hnh-hd-png-download.png",
+          // imageUrl: "https://www.pngitem.com/pimgs/m/523-5236058_nh-icon-hot-hnh-hd-png-download.png",
         },
       },
       data: {
@@ -47,13 +49,4 @@ async function sendNotificationToToken(registrationToken) {
   }
 }
 
-// --- Ví dụ chạy thử ---
-// Thay thế bằng FCM registration token thực tế của thiết bị của bạn
-const YOUR_DEVICE_TOKEN =
-  "fLmNjuQVS_6Q6UhQ2wQRNM:APA91bEjqaceWAMZDSsy3fJtGFVF1DuP1mHZiD2s73ac7CM0Lh8qyvvi1eqLz5Q_l3dTJm7mHKs7PMNE9QLfvs8K3HEcVWf4-JYvAWhvjhxZ4_5eS8FPZKU";
-
-if (YOUR_DEVICE_TOKEN === "YOUR_FCM_DEVICE_TOKEN_HERE") {
-  console.log('Vui lòng thay thế "YOUR_FCM_DEVICE_TOKEN_HERE" bằng token thiết bị thực tế của bạn.');
-} else {
-  sendNotificationToToken(YOUR_DEVICE_TOKEN);
-}
+sendNotificationToToken(DEVICE_TOKEN);
