@@ -1,6 +1,6 @@
 import admin from "firebase-admin";
 import { getMessaging } from "firebase-admin/messaging";
-import serviceAccount from "./service-account.json" with { type: "json" };
+import serviceAccount from "./serviceAccountKey.json" with { type: "json" };
 import { DEVICE_TOKEN } from "./config.js";
 
 // Khởi tạo Firebase Admin SDK
@@ -17,11 +17,11 @@ async function sendNotificationToToken(registrationToken) {
       notification: {
         title: "Nguyễn Hải An",
         body: "An vừa gửi cho bạn đơn nghỉ phép 2 ngày cần phê duyệt",
-        imageUrl: "https://sineksekiz.com/wp-content/uploads/2025/02/anh-gai-xinh-11aY6mVg.jpg",
+        imageUrl: "https://www.google.com/s2/favicons?sz=256&domain=getmedis.com",
       },
       android: {
+        priority: "high",
         notification: {
-          // imageUrl: "https://www.pngitem.com/pimgs/m/523-5236058_nh-icon-hot-hnh-hd-png-download.png",
           notificationCount: 2,
         },
       },
@@ -32,14 +32,13 @@ async function sendNotificationToToken(registrationToken) {
           },
         },
         fcmOptions: {
-          // imageUrl: "https://www.pngitem.com/pimgs/m/523-5236058_nh-icon-hot-hnh-hd-png-download.png",
         },
       },
       data: {
         action: "display_notification",
         notification_id: "123",
         badge_count: "9",
-        deeplink: "supi://https://trial.supi.vn/time/leave-request/123",
+        deeplink: "supi://https://awesome-native-macos-apps.pages.dev",
       },
       token: registrationToken,
     });

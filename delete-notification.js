@@ -1,6 +1,6 @@
 import admin from "firebase-admin";
 import { getMessaging } from "firebase-admin/messaging";
-import serviceAccount from "./service-account.json" with { type: "json" };
+import serviceAccount from "./serviceAccountKey.json" with { type: "json" };
 import { DEVICE_TOKEN } from "./config.js";
 
 // Khởi tạo Firebase Admin SDK
