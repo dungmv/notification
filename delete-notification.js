@@ -14,9 +14,23 @@ const messaging = getMessaging(app);
 async function sendNotificationToToken(registrationToken) {
   try {
     const response = await messaging.send({
+      android: {
+        priority: "high",
+      },
+      apns: {
+        payload: {
+          aps: {
+            contentAvailable: true, // Bắt buộc cho iOS chạy ngầm
+          },
+        },
+        headers: {
+          "apns-push-type": "background", // Bắt buộc cho iOS background push
+          "apns-priority": "5", // Bắt buộc cho iOS background push
+        },
+      },
       data: {
         action: "cancel_notification",
-        notification_id: "projects/supi-vn/messages/0:1782419936328418%d8a68c28d8a68c28",
+        notification_id: "123456",
       },
       token: registrationToken,
     });

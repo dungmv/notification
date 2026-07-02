@@ -14,32 +14,15 @@ const messaging = getMessaging(app);
 async function sendNotificationToToken(registrationToken) {
   try {
     const response = await messaging.send({
-      // notification: {
-      //   title: "Nguyễn Hải An",
-      //   body: "An vừa gửi cho bạn đơn nghỉ phép 2 ngày cần phê duyệt",
-      //   imageUrl: "https://www.google.com/s2/favicons?sz=256&domain=getmedis.com",
-      // },
       android: {
         priority: "high",
-        notification: {
-          notificationCount: 2,
-        },
-      },
-      apns: {
-        payload: {
-          aps: {
-            badge: 2,
-          },
-        },
-        fcmOptions: {
-        },
       },
       data: {
-        notification_id: "123",
+        notification_id: "123456",
         action: "display_notification",
-        title: "Nguyễn Hải An",
+        title: "Nguyễn Hải An, tin nhắn cần xoá",
         body: "An vừa gửi cho bạn đơn nghỉ phép 2 ngày cần phê duyệt",
-        avatar_url: "https://www.google.com/s2/favicons?sz=256&domain=getmedis.com",
+        avatar_url: "https://avatars.githubusercontent.com/dungmv?s=128&v=4",
         deeplink: "supi://https://awesome-native-macos-apps.pages.dev",
       },
       token: registrationToken,
